@@ -1,4 +1,3 @@
-
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 
@@ -18,24 +17,31 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const user = JSON.parse(localStorage.getItem("user"));
-
-const solved = user?.dsaSolved || 0;
-
-const data = [
-  { day: "Mon", solved: Math.max(0, solved - 6) },
-  { day: "Tue", solved: Math.max(0, solved - 5) },
-  { day: "Wed", solved: Math.max(0, solved - 4) },
-  { day: "Thu", solved: Math.max(0, solved - 3) },
-  { day: "Fri", solved: Math.max(0, solved - 2) },
-  { day: "Sat", solved: Math.max(0, solved - 1) },
-  { day: "Sun", solved: solved },
-];
-
 function Dashboard() {
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  const dsaSolved = Number(user?.dsaSolved || 0);
+  const mockInterviews = Number(
+    user?.mockInterviews || 0
+  );
+  const quizzesTaken = Number(
+    user?.quizzesTaken || 0
+  );
+  const streak = Number(user?.streak || 0);
+
+  const chartData = [
+    { day: "Mon", solved: Math.max(0, dsaSolved - 6) },
+    { day: "Tue", solved: Math.max(0, dsaSolved - 5) },
+    { day: "Wed", solved: Math.max(0, dsaSolved - 4) },
+    { day: "Thu", solved: Math.max(0, dsaSolved - 3) },
+    { day: "Fri", solved: Math.max(0, dsaSolved - 2) },
+    { day: "Sat", solved: Math.max(0, dsaSolved - 1) },
+    { day: "Sun", solved: dsaSolved },
+  ];
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -76,7 +82,7 @@ function Dashboard() {
 
             <button
               onClick={handleLogout}
-              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition"
+              className="bg-red-500 text-white px-5 py-2 rounded-xl hover:bg-red-600"
             >
               Logout
             </button>
@@ -85,116 +91,77 @@ function Dashboard() {
 
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats */}
 
         <div className="grid md:grid-cols-4 gap-6">
 
-          {/* DSA */}
-
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+            <FaCode className="text-purple-600 text-3xl mb-4" />
 
-            <div className="flex justify-between">
-              <FaCode className="text-purple-600 text-2xl" />
-
-              <span className="text-green-500 text-sm">
-                +12%
-              </span>
-            </div>
-
-            <h2 className="text-3xl font-bold mt-4 text-purple-600">
-              {user?.dsaSolved || 0}
+            <h2 className="text-4xl font-bold text-purple-600">
+              {dsaSolved}
             </h2>
 
-            <p className="text-gray-500">
+            <p className="text-gray-500 mt-2">
               DSA Problems Solved
             </p>
-
           </div>
 
-          {/* Mock Interviews */}
-
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+            <FaRobot className="text-blue-600 text-3xl mb-4" />
 
-            <div className="flex justify-between">
-              <FaRobot className="text-blue-600 text-2xl" />
-
-              <span className="text-green-500 text-sm">
-                +4
-              </span>
-            </div>
-
-            <h2 className="text-3xl font-bold mt-4 text-blue-600">
-              {user?.mockInterviews || 0}
+            <h2 className="text-4xl font-bold text-blue-600">
+              {mockInterviews}
             </h2>
 
-            <p className="text-gray-500">
+            <p className="text-gray-500 mt-2">
               Mock Interviews
             </p>
-
           </div>
 
-          {/* Quizzes */}
-
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+            <FaClipboardList className="text-orange-500 text-3xl mb-4" />
 
-            <div className="flex justify-between">
-              <FaClipboardList className="text-orange-500 text-2xl" />
-
-              <span className="text-green-500 text-sm">
-                +8
-              </span>
-            </div>
-
-            <h2 className="text-3xl font-bold mt-4 text-orange-500">
-              {user?.quizzesTaken || 0}
+            <h2 className="text-4xl font-bold text-orange-500">
+              {quizzesTaken}
             </h2>
 
-            <p className="text-gray-500">
+            <p className="text-gray-500 mt-2">
               Quizzes Taken
             </p>
-
           </div>
 
-          {/* Streak */}
-
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+            <FaFire className="text-red-500 text-3xl mb-4" />
 
-            <div className="flex justify-between">
-              <FaFire className="text-red-500 text-2xl" />
-
-              <span className="text-green-500 text-sm">
-                Active
-              </span>
-            </div>
-
-            <h2 className="text-3xl font-bold mt-4 text-red-500">
-              {user?.streak || 0}
+            <h2 className="text-4xl font-bold text-red-500">
+              {streak}
             </h2>
 
-            <p className="text-gray-500">
+            <p className="text-gray-500 mt-2">
               Day Streak
             </p>
-
           </div>
 
         </div>
 
-        {/* Bottom Section */}
+        {/* Chart + Activity */}
 
         <div className="grid md:grid-cols-2 gap-8 mt-8">
 
-          {/* Progress Chart */}
+          {/* Chart */}
 
           <div className="bg-white p-6 rounded-2xl shadow">
 
-            <h2 className="text-xl font-bold mb-4">
+            <h2 className="text-2xl font-bold mb-4">
               Weekly Progress
             </h2>
 
-            <ResponsiveContainer width="100%" height={280}>
-
-              <LineChart data={data}>
-
+            <ResponsiveContainer
+              width="100%"
+              height={300}
+            >
+              <LineChart data={chartData}>
                 <XAxis dataKey="day" />
                 <YAxis />
                 <Tooltip />
@@ -203,11 +170,9 @@ function Dashboard() {
                   type="monotone"
                   dataKey="solved"
                   stroke="#7C3AED"
-                  strokeWidth={3}
+                  strokeWidth={4}
                 />
-
               </LineChart>
-
             </ResponsiveContainer>
 
           </div>
@@ -216,26 +181,26 @@ function Dashboard() {
 
           <div className="bg-white p-6 rounded-2xl shadow">
 
-            <h2 className="text-xl font-bold mb-4">
+            <h2 className="text-2xl font-bold mb-4">
               Recent Activity
             </h2>
 
             <div className="space-y-4">
 
-              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-                ✅ Solved Two Sum Problem
+              <div className="bg-purple-50 p-4 rounded-xl border border-purple-200">
+                💻 DSA Solved: {dsaSolved}
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                🎤 Frontend Mock Interview Completed
+              <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+                🎤 Interviews Completed: {mockInterviews}
               </div>
 
-              <div className="bg-orange-50 border border-orange-200 rounded-xl p-4">
-                📝 React Quiz Completed
+              <div className="bg-orange-50 p-4 rounded-xl border border-orange-200">
+                📝 Quizzes Attempted: {quizzesTaken}
               </div>
 
-              <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
-                🗺️ Frontend Roadmap Updated
+              <div className="bg-red-50 p-4 rounded-xl border border-red-200">
+                🔥 Current Streak: {streak} Days
               </div>
 
             </div>
@@ -249,5 +214,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
-
+export default Dashboard;s
