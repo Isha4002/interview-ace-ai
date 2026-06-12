@@ -1,56 +1,142 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
-import { FaFileUpload } from "react-icons/fa";
+import {
+  FaFileUpload,
+  FaFilePdf,
+  FaCheckCircle,
+} from "react-icons/fa";
 
 function ResumeAnalyzer() {
+  const navigate = useNavigate();
+
+  const [file, setFile] = useState(null);
+
+  const handleAnalyze = () => {
+    if (!file) {
+      alert("Please upload a resume first.");
+      return;
+    }
+
+    navigate("/resume-result");
+  };
+
   return (
     <div className="bg-[#F8F7FC] min-h-screen">
       <Sidebar />
 
       <div className="ml-64 p-8">
 
+        {/* Header */}
+
         <h1 className="text-4xl font-bold mb-2">
-          Resume Analyzer
+          Resume Analyzer 📄
         </h1>
 
         <p className="text-gray-500 mb-8">
-          Upload your resume and get AI feedback
+          Upload your resume and receive detailed AI-style feedback.
         </p>
 
-        <div className="bg-white rounded-2xl p-10 shadow-sm max-w-2xl">
+        {/* Upload Card */}
 
-          <div className="border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center">
+        <div className="bg-white rounded-3xl p-10 shadow max-w-3xl">
 
-            <FaFileUpload className="text-5xl text-purple-600 mx-auto mb-4" />
+          <div className="border-2 border-dashed border-purple-300 rounded-3xl p-12 text-center">
 
-            <h2 className="text-xl font-semibold">
-              Upload Resume
+            <FaFileUpload className="text-6xl text-purple-600 mx-auto mb-6" />
+
+            <h2 className="text-2xl font-bold">
+              Upload Your Resume
             </h2>
 
-            <p className="text-gray-500 mt-2">
-              PDF, DOCX supported
+            <p className="text-gray-500 mt-3">
+              Supported formats: PDF, DOC, DOCX
             </p>
 
             <input
               type="file"
-              className="mt-6"
+              accept=".pdf,.doc,.docx"
+              onChange={(e) =>
+                setFile(e.target.files[0])
+              }
+              className="mt-8"
             />
 
-            <Link
-              to="/resume-result"
+            {file && (
+              <div className="mt-8 bg-green-50 border border-green-200 rounded-2xl p-5 flex items-center gap-4">
+
+                <FaFilePdf className="text-red-500 text-3xl" />
+
+                <div className="text-left">
+
+                  <h3 className="font-semibold">
+                    {file.name}
+                  </h3>
+
+                  <p className="text-gray-500 text-sm">
+                    {(file.size / 1024).toFixed(2)} KB
+                  </p>
+
+                </div>
+
+                <FaCheckCircle className="ml-auto text-green-500 text-2xl" />
+
+              </div>
+            )}
+
+            <button
+              onClick={handleAnalyze}
               className="
-              block
-              mt-6
+              mt-8
               bg-purple-600
               text-white
-              px-6
+              px-8
               py-3
               rounded-xl
+              font-semibold
+              hover:bg-purple-700
+              transition
               "
             >
               Analyze Resume
-            </Link>
+            </button>
 
+          </div>
+
+        </div>
+
+        {/* Features */}
+
+        <div className="grid md:grid-cols-3 gap-6 mt-8">
+
+          <div className="bg-white p-6 rounded-2xl shadow">
+            <h3 className="font-bold text-lg">
+              ATS Score
+            </h3>
+
+            <p className="text-gray-500 mt-2">
+              Check how ATS-friendly your resume is.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow">
+            <h3 className="font-bold text-lg">
+              Skill Analysis
+            </h3>
+
+            <p className="text-gray-500 mt-2">
+              Identify strengths and missing skills.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow">
+            <h3 className="font-bold text-lg">
+              Improvement Tips
+            </h3>
+
+            <p className="text-gray-500 mt-2">
+              Get actionable suggestions to improve.
+            </p>
           </div>
 
         </div>
