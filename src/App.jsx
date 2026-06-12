@@ -16,6 +16,8 @@ import MockInterviews from "./pages/MockInterviews";
 import InterviewSession from "./pages/InterviewSession";
 import QuizAttempt from "./pages/QuizAttempt";
 
+import RoadmapDetails from "./pages/RoadmapDetails";
+
 function App() {
   return (
     <BrowserRouter>
@@ -49,6 +51,9 @@ function App() {
         <Route path="/mock-interviews" element={<MockInterviews />} />
 
         <Route path="/interview-session" element={<InterviewSession />} />
+
+
+        <Route path="/roadmap-details" element={<RoadmapDetails />} />
 
         <Route
   path="/quiz-attempt"
