@@ -1,14 +1,66 @@
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
 function RoadmapDetails() {
-  const topics = [
+  const location = useLocation();
+
+  const roadmapTitle =
+    location.state?.roadmap ||
+    "Frontend Developer";
+
+  const defaultTopics = [
     "HTML & CSS",
     "JavaScript",
     "React",
+    "Redux",
+    "TypeScript",
+    "Next.js",
     "Node.js",
-    "Express",
+    "Express.js",
     "MongoDB",
+    "Git & GitHub",
+    "Testing",
+    "Deployment",
   ];
+
+  const [completedTopics, setCompletedTopics] =
+    useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(
+      roadmapTitle
+    );
+
+    if (saved) {
+      setCompletedTopics(JSON.parse(saved));
+    }
+  }, [roadmapTitle]);
+
+  const toggleTopic = (topic) => {
+    let updated;
+
+    if (completedTopics.includes(topic)) {
+      updated = completedTopics.filter(
+        (t) => t !== topic
+      );
+    } else {
+      updated = [...completedTopics, topic];
+    }
+
+    setCompletedTopics(updated);
+
+    localStorage.setItem(
+      roadmapTitle,
+      JSON.stringify(updated)
+    );
+  };
+
+  const progress = Math.round(
+    (completedTopics.length /
+      defaultTopics.length) *
+      100
+  );
 
   return (
     <div className="bg-[#F8F7FC] min-h-screen">
@@ -16,48 +68,93 @@ function RoadmapDetails() {
 
       <div className="ml-64 p-8">
 
-        <h1 className="text-4xl font-bold mb-4">
-          Frontend Developer Roadmap
+        {/* Header */}
+
+        <h1 className="text-4xl font-bold mb-2">
+          {roadmapTitle} Roadmap 🛣️
         </h1>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm">
+        <p className="text-gray-500 mb-8">
+          Complete topics and track your learning journey.
+        </p>
 
-          <div className="mb-8">
+        {/* Progress Card */}
 
-            <div className="flex justify-between mb-2">
-              <span>Progress</span>
-              <span>65%</span>
-            </div>
+        <div className="bg-white p-8 rounded-3xl shadow mb-8">
 
-            <div className="w-full bg-gray-200 h-3 rounded-full">
+          <div className="flex justify-between mb-4">
 
-              <div
-                className="bg-green-500 h-3 rounded-full"
-                style={{ width: "65%" }}
-              ></div>
+            <span className="font-semibold">
+              Progress
+            </span>
 
-            </div>
+            <span className="text-purple-600 font-bold">
+              {progress}%
+            </span>
 
           </div>
 
+          <div className="w-full bg-gray-200 h-4 rounded-full">
+
+            <div
+              className="bg-purple-600 h-4 rounded-full"
+              style={{
+                width: `${progress}%`,
+              }}
+            ></div>
+
+          </div>
+
+          <p className="mt-4 text-gray-500">
+            {completedTopics.length} of{" "}
+            {defaultTopics.length} topics completed.
+          </p>
+
+        </div>
+
+        {/* Topics */}
+
+        <div className="bg-white rounded-3xl shadow p-8">
+
+          <h2 className="text-2xl font-bold mb-6">
+            Learning Path
+          </h2>
+
           <div className="space-y-4">
 
-            {topics.map((topic, index) => (
+            {defaultTopics.map((topic, index) => (
+
               <div
                 key={index}
                 className="
+                flex
+                justify-between
+                items-center
                 border
                 rounded-xl
                 p-4
-                flex
-                justify-between
+                hover:bg-gray-50
+                transition
                 "
               >
-                <span>{topic}</span>
-                <span className="text-green-600">
-                  ✓
+
+                <span className="font-medium">
+                  {topic}
                 </span>
+
+                <input
+                  type="checkbox"
+                  checked={completedTopics.includes(
+                    topic
+                  )}
+                  onChange={() =>
+                    toggleTopic(topic)
+                  }
+                  className="w-5 h-5"
+                />
+
               </div>
+
             ))}
 
           </div>
