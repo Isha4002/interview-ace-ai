@@ -1,9 +1,5 @@
 function Profile() {
-  return (
-    <div>
-      <h1>Profile Page</h1>
-    </div>
-  );
+  return <h1>Profile Page</h1>;
 }
 
 export default Profile;

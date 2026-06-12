@@ -1,9 +1,5 @@
 function AIInterview() {
-  return (
-    <div>
-      <h1>AI Interview Page</h1>
-    </div>
-  );
+  return <h1>AI Interview Page</h1>;
 }
 
 export default AIInterview;
