@@ -1,10 +1,11 @@
 import Sidebar from "../components/Sidebar";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaCode,
   FaRobot,
   FaClipboardList,
-  FaFire
+  FaFire,
 } from "react-icons/fa";
 
 import {
@@ -13,7 +14,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 const data = [
@@ -27,9 +28,19 @@ const data = [
 ];
 
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    navigate("/login");
+  };
+
   return (
     <div className="bg-[#F8F7FC] min-h-screen">
-
       <Sidebar />
 
       <div className="ml-64 p-8">
@@ -40,7 +51,7 @@ function Dashboard() {
 
           <div>
             <h1 className="text-4xl font-bold">
-              Welcome Back, Isha 👋
+              Welcome Back, {user?.name} 👋
             </h1>
 
             <p className="text-gray-500 mt-2">
@@ -54,21 +65,30 @@ function Dashboard() {
               🔔
             </button>
 
-            <div className="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">
-              I
+            <div className="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg">
+              {user?.name?.charAt(0).toUpperCase()}
             </div>
+
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600"
+            >
+              Logout
+            </button>
 
           </div>
 
         </div>
 
-        {/* Stats */}
+        {/* Stats Cards */}
 
         <div className="grid md:grid-cols-4 gap-6">
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+
             <div className="flex justify-between">
               <FaCode className="text-purple-600 text-2xl" />
+
               <span className="text-green-500 text-sm">
                 +12%
               </span>
@@ -81,11 +101,14 @@ function Dashboard() {
             <p className="text-gray-500">
               DSA Problems Solved
             </p>
+
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+
             <div className="flex justify-between">
               <FaRobot className="text-blue-600 text-2xl" />
+
               <span className="text-green-500 text-sm">
                 +4
               </span>
@@ -98,11 +121,14 @@ function Dashboard() {
             <p className="text-gray-500">
               Mock Interviews
             </p>
+
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+
             <div className="flex justify-between">
               <FaClipboardList className="text-orange-500 text-2xl" />
+
               <span className="text-green-500 text-sm">
                 +8
               </span>
@@ -115,11 +141,14 @@ function Dashboard() {
             <p className="text-gray-500">
               Quizzes Taken
             </p>
+
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+
             <div className="flex justify-between">
               <FaFire className="text-red-500 text-2xl" />
+
               <span className="text-green-500 text-sm">
                 Active
               </span>
@@ -132,15 +161,16 @@ function Dashboard() {
             <p className="text-gray-500">
               Day Streak
             </p>
+
           </div>
 
         </div>
 
-        {/* Bottom */}
+        {/* Bottom Section */}
 
         <div className="grid md:grid-cols-2 gap-8 mt-8">
 
-          {/* Chart */}
+          {/* Progress Chart */}
 
           <div className="bg-white p-6 rounded-2xl shadow">
 
@@ -171,7 +201,7 @@ function Dashboard() {
 
           </div>
 
-          {/* Activity */}
+          {/* Recent Activity */}
 
           <div className="bg-white p-6 rounded-2xl shadow">
 
@@ -204,7 +234,6 @@ function Dashboard() {
         </div>
 
       </div>
-
     </div>
   );
 }
