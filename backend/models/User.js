@@ -17,6 +17,31 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    role: {
+      type: String,
+      default: "student",
+    },
+
+    dsaSolved: {
+      type: Number,
+      default: 0,
+    },
+
+    mockInterviews: {
+      type: Number,
+      default: 0,
+    },
+
+    quizzesTaken: {
+      type: Number,
+      default: 0,
+    },
+
+    streak: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
