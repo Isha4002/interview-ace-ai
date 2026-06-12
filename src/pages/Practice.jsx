@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import questions from "../data/questions";
@@ -5,6 +6,9 @@ import questions from "../data/questions";
 function Practice() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
+  const [topic, setTopic] = useState("All");
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const filtered = questions.filter((q) => {
     const matchesSearch = q.title
@@ -14,7 +18,14 @@ function Practice() {
     const matchesDifficulty =
       filter === "All" || q.difficulty === filter;
 
-    return matchesSearch && matchesDifficulty;
+    const matchesTopic =
+      topic === "All" || q.topic === topic;
+
+    return (
+      matchesSearch &&
+      matchesDifficulty &&
+      matchesTopic
+    );
   });
 
   return (
@@ -34,16 +45,80 @@ function Practice() {
           </p>
         </div>
 
-        <div className="bg-white px-6 py-4 rounded-xl shadow-sm">
+        <div className="flex gap-4">
 
+          <div className="bg-white px-6 py-4 rounded-xl shadow-sm">
+
+            <h3 className="font-semibold">
+              Total Questions
+            </h3>
+
+            <p className="text-2xl font-bold text-purple-600">
+              {questions.length}
+            </p>
+
+          </div>
+
+          <div className="bg-white px-6 py-4 rounded-xl shadow-sm">
+
+            <h3 className="font-semibold">
+              Solved Questions
+            </h3>
+
+            <p className="text-2xl font-bold text-green-600">
+              {user?.dsaSolved || 0}
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Difficulty Stats */}
+
+      <div className="grid md:grid-cols-3 gap-4 mb-8">
+
+        <div className="bg-green-100 p-5 rounded-xl">
           <h3 className="font-semibold">
-            Total Questions
+            Easy
           </h3>
 
-          <p className="text-2xl font-bold text-purple-600">
-            {questions.length}
+          <p className="text-3xl font-bold text-green-700">
+            {
+              questions.filter(
+                (q) => q.difficulty === "Easy"
+              ).length
+            }
           </p>
+        </div>
 
+        <div className="bg-yellow-100 p-5 rounded-xl">
+          <h3 className="font-semibold">
+            Medium
+          </h3>
+
+          <p className="text-3xl font-bold text-yellow-700">
+            {
+              questions.filter(
+                (q) => q.difficulty === "Medium"
+              ).length
+            }
+          </p>
+        </div>
+
+        <div className="bg-red-100 p-5 rounded-xl">
+          <h3 className="font-semibold">
+            Hard
+          </h3>
+
+          <p className="text-3xl font-bold text-red-700">
+            {
+              questions.filter(
+                (q) => q.difficulty === "Hard"
+              ).length
+            }
+          </p>
         </div>
 
       </div>
@@ -68,7 +143,7 @@ function Practice() {
 
       {/* Filters */}
 
-      <div className="flex gap-3 mb-8">
+      <div className="flex flex-wrap gap-3 mb-8">
 
         <button
           onClick={() => setFilter("All")}
@@ -114,6 +189,40 @@ function Practice() {
           Hard
         </button>
 
+        <select
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          className="px-4 py-2 rounded-lg border bg-white"
+        >
+          <option value="All">
+            All Topics
+          </option>
+
+          <option value="Arrays">
+            Arrays
+          </option>
+
+          <option value="Strings">
+            Strings
+          </option>
+
+          <option value="Linked List">
+            Linked List
+          </option>
+
+          <option value="Trees">
+            Trees
+          </option>
+
+          <option value="Graphs">
+            Graphs
+          </option>
+
+          <option value="DP">
+            Dynamic Programming
+          </option>
+        </select>
+
       </div>
 
       {/* Questions */}
@@ -142,9 +251,13 @@ function Practice() {
                 {q.title}
               </h2>
 
-              <p className="text-gray-500">
-                Topic: {q.topic}
-              </p>
+              <div className="mt-2">
+
+                <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">
+                  {q.topic}
+                </span>
+
+              </div>
 
             </div>
 
@@ -195,3 +308,4 @@ function Practice() {
 }
 
 export default Practice;
+

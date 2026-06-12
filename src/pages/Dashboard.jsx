@@ -18,14 +18,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
+const solved = user?.dsaSolved || 0;
+
 const data = [
-  { day: "Mon", solved: 10 },
-  { day: "Tue", solved: 20 },
-  { day: "Wed", solved: 15 },
-  { day: "Thu", solved: 35 },
-  { day: "Fri", solved: 28 },
-  { day: "Sat", solved: 40 },
-  { day: "Sun", solved: 55 },
+  { day: "Mon", solved: Math.max(0, solved - 6) },
+  { day: "Tue", solved: Math.max(0, solved - 5) },
+  { day: "Wed", solved: Math.max(0, solved - 4) },
+  { day: "Thu", solved: Math.max(0, solved - 3) },
+  { day: "Fri", solved: Math.max(0, solved - 2) },
+  { day: "Sat", solved: Math.max(0, solved - 1) },
+  { day: "Sun", solved: solved },
 ];
 
 function Dashboard() {
