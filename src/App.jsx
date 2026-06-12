@@ -15,7 +15,7 @@ import ProblemDetails from "./pages/ProblemDetails";
 import MockInterviews from "./pages/MockInterviews";
 import InterviewSession from "./pages/InterviewSession";
 import QuizAttempt from "./pages/QuizAttempt";
-
+import ResumeResult from "./pages/ResumeResult";
 import RoadmapDetails from "./pages/RoadmapDetails";
 
 function App() {
@@ -52,7 +52,8 @@ function App() {
 
         <Route path="/interview-session" element={<InterviewSession />} />
 
-
+        <Route path="/resume-result" element={<ResumeResult />} />
+        
         <Route path="/roadmap-details" element={<RoadmapDetails />} />
 
         <Route
