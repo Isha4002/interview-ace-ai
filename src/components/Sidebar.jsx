@@ -6,88 +6,94 @@ import {
   FaRoad,
   FaFileAlt,
   FaChartLine,
-  FaUser
+  FaUser,
+  FaCog,
+  FaSignOutAlt
 } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
+  const menuClass = ({ isActive }) =>
+    `flex items-center gap-3 px-4 py-3 rounded-xl transition-all
+    ${
+      isActive
+        ? "bg-purple-100 text-purple-600 font-semibold"
+        : "text-gray-600 hover:bg-gray-100"
+    }`;
+
   return (
-    <div className="w-64 h-screen bg-white border-r fixed left-0 top-0">
+    <div className="w-64 h-screen bg-white border-r fixed left-0 top-0 flex flex-col">
+
+      {/* Logo */}
 
       <div className="p-6 border-b">
 
-        <h1 className="text-xl font-bold text-purple-600">
+        <h1 className="text-2xl font-bold text-purple-600">
           InterviewAce AI
         </h1>
 
       </div>
 
-      <div className="p-4 flex flex-col gap-2">
+      {/* Menu */}
 
-        <Link
-          to="/dashboard"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaTachometerAlt className="inline mr-3" />
+      <div className="flex-1 p-4 flex flex-col gap-2">
+
+        <NavLink to="/dashboard" className={menuClass}>
+          <FaTachometerAlt />
           Dashboard
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/practice"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaCode className="inline mr-3" />
+        <NavLink to="/practice" className={menuClass}>
+          <FaCode />
           DSA Practice
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/aiinterview"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaRobot className="inline mr-3" />
+        <NavLink to="/aiinterview" className={menuClass}>
+          <FaRobot />
           Mock Interviews
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/quiz"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaClipboardList className="inline mr-3" />
+        <NavLink to="/quiz" className={menuClass}>
+          <FaClipboardList />
           Quizzes
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/roadmaps"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaRoad className="inline mr-3" />
+        <NavLink to="/roadmaps" className={menuClass}>
+          <FaRoad />
           Roadmaps
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/resume"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaFileAlt className="inline mr-3" />
+        <NavLink to="/resume" className={menuClass}>
+          <FaFileAlt />
           Resume Analyzer
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/progress"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaChartLine className="inline mr-3" />
+        <NavLink to="/progress" className={menuClass}>
+          <FaChartLine />
           Progress
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/profile"
-          className="p-3 rounded-xl hover:bg-purple-100"
-        >
-          <FaUser className="inline mr-3" />
+        <NavLink to="/profile" className={menuClass}>
+          <FaUser />
           Profile
-        </Link>
+        </NavLink>
+
+      </div>
+
+      {/* Bottom */}
+
+      <div className="p-4 border-t flex flex-col gap-2">
+
+        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">
+          <FaCog />
+          Settings
+        </button>
+
+        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50">
+          <FaSignOutAlt />
+          Logout
+        </button>
 
       </div>
 
