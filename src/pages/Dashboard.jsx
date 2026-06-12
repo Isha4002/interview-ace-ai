@@ -1,3 +1,4 @@
+
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 
@@ -51,7 +52,7 @@ function Dashboard() {
 
           <div>
             <h1 className="text-4xl font-bold">
-              Welcome Back, {user?.name} 👋
+              Welcome Back, {user?.name || "User"} 👋
             </h1>
 
             <p className="text-gray-500 mt-2">
@@ -71,7 +72,7 @@ function Dashboard() {
 
             <button
               onClick={handleLogout}
-              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600"
+              className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600 transition"
             >
               Logout
             </button>
@@ -84,6 +85,8 @@ function Dashboard() {
 
         <div className="grid md:grid-cols-4 gap-6">
 
+          {/* DSA */}
+
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
 
             <div className="flex justify-between">
@@ -95,7 +98,7 @@ function Dashboard() {
             </div>
 
             <h2 className="text-3xl font-bold mt-4 text-purple-600">
-              1250
+              {user?.dsaSolved || 0}
             </h2>
 
             <p className="text-gray-500">
@@ -103,6 +106,8 @@ function Dashboard() {
             </p>
 
           </div>
+
+          {/* Mock Interviews */}
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
 
@@ -115,7 +120,7 @@ function Dashboard() {
             </div>
 
             <h2 className="text-3xl font-bold mt-4 text-blue-600">
-              18
+              {user?.mockInterviews || 0}
             </h2>
 
             <p className="text-gray-500">
@@ -123,6 +128,8 @@ function Dashboard() {
             </p>
 
           </div>
+
+          {/* Quizzes */}
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
 
@@ -135,7 +142,7 @@ function Dashboard() {
             </div>
 
             <h2 className="text-3xl font-bold mt-4 text-orange-500">
-              32
+              {user?.quizzesTaken || 0}
             </h2>
 
             <p className="text-gray-500">
@@ -143,6 +150,8 @@ function Dashboard() {
             </p>
 
           </div>
+
+          {/* Streak */}
 
           <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
 
@@ -155,7 +164,7 @@ function Dashboard() {
             </div>
 
             <h2 className="text-3xl font-bold mt-4 text-red-500">
-              12
+              {user?.streak || 0}
             </h2>
 
             <p className="text-gray-500">
@@ -183,9 +192,7 @@ function Dashboard() {
               <LineChart data={data}>
 
                 <XAxis dataKey="day" />
-
                 <YAxis />
-
                 <Tooltip />
 
                 <Line
@@ -239,3 +246,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+

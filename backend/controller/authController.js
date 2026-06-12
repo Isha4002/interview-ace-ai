@@ -29,12 +29,16 @@ const registerUser = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    const userResponse = {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    };
+   const userResponse = {
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  role: user.role,
+  dsaSolved: user.dsaSolved,
+  mockInterviews: user.mockInterviews,
+  quizzesTaken: user.quizzesTaken,
+  streak: user.streak,
+};
 
     res.status(201).json({
       success: true,
@@ -83,13 +87,30 @@ const loginUser = async (req, res) => {
       success: true,
       token,
       user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
+  _id: user._id,
+  name: user.name,
+  email: user.email,
+  role: user.role,
+  dsaSolved: user.dsaSolved,
+  mockInterviews: user.mockInterviews,
+  quizzesTaken: user.quizzesTaken,
+  streak: user.streak,
+},
     });
 
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const getMe = async (req, res) => {
+  try {
+    res.status(200).json({
+      success: true,
+      user: req.user,
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -100,4 +121,5 @@ const loginUser = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  getMe,
 };
