@@ -13,7 +13,8 @@ import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
 import ProblemDetails from "./pages/ProblemDetails";
 import MockInterviews from "./pages/MockInterviews";
-import InterviewSession from "./pages/InterviewSession"
+import InterviewSession from "./pages/InterviewSession";
+import QuizAttempt from "./pages/QuizAttempt";
 
 function App() {
   return (
@@ -48,6 +49,11 @@ function App() {
         <Route path="/mock-interviews" element={<MockInterviews />} />
 
         <Route path="/interview-session" element={<InterviewSession />} />
+
+        <Route
+  path="/quiz-attempt"
+  element={<QuizAttempt />}
+/>
 
       </Routes>
 
