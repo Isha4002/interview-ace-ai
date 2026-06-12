@@ -49,10 +49,10 @@ function Sidebar() {
           DSA Practice
         </NavLink>
 
-        <NavLink to="/aiinterview" className={menuClass}>
-          <FaRobot />
-          Mock Interviews
-        </NavLink>
+        <NavLink to="/mock-interviews" className={menuClass}>
+  <FaRobot />
+  Mock Interviews
+</NavLink>
 
         <NavLink to="/quiz" className={menuClass}>
           <FaClipboardList />

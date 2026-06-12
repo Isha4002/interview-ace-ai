@@ -11,6 +11,9 @@ import Roadmaps from "./pages/Roadmaps";
 import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
+import ProblemDetails from "./pages/ProblemDetails";
+import MockInterviews from "./pages/MockInterviews";
+import InterviewSession from "./pages/InterviewSession"
 
 function App() {
   return (
@@ -39,6 +42,12 @@ function App() {
         <Route path="/progress" element={<Progress />} />
 
         <Route path="/profile" element={<Profile />} />
+
+        <Route path="/problem/:id" element={<ProblemDetails />} />
+
+        <Route path="/mock-interviews" element={<MockInterviews />} />
+
+        <Route path="/interview-session" element={<InterviewSession />} />
 
       </Routes>
 
