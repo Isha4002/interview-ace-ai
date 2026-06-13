@@ -246,15 +246,7 @@ Through this project I gained hands-on experience with:
 - UI/UX Design
 - Git & GitHub Workflow
 
----
 
-## 👩‍💻 Author
-
-### Isha Pal
-
-Computer Science Student | MERN Stack Developer | Machine Learning Enthusiast
-
-GitHub: https://github.com/Isha4002
 
 ---
 
@@ -279,8 +271,17 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+---
 
+## 👩‍💻 Author
 
+### Isha Pal
+
+Computer Science Student | MERN Stack Developer | Machine Learning Enthusiast
+
+GitHub: https://github.com/Isha4002
+
+---
 ## ⭐ Support
 
 If you found this project useful, consider giving it a star on GitHub.
