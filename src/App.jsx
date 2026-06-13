@@ -17,7 +17,7 @@ import InterviewSession from "./pages/InterviewSession";
 import QuizAttempt from "./pages/QuizAttempt";
 import ResumeResult from "./pages/ResumeResult";
 import RoadmapDetails from "./pages/RoadmapDetails";
-
+import Settings from "./pages/Settings";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -158,6 +158,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+  path="/settings"
+  element={
+    <ProtectedRoute>
+      <Settings />
+    </ProtectedRoute>
+  }
+/>
 
       </Routes>
     </BrowserRouter>

@@ -8,12 +8,24 @@ import {
   FaChartLine,
   FaUser,
   FaCog,
-  FaSignOutAlt
+  FaSignOutAlt,
 } from "react-icons/fa";
 
-import { NavLink } from "react-router-dom";
+import {
+  NavLink,
+  useNavigate,
+} from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    navigate("/login");
+  };
+
   const menuClass = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-xl transition-all
     ${
@@ -39,42 +51,66 @@ function Sidebar() {
 
       <div className="flex-1 p-4 flex flex-col gap-2">
 
-        <NavLink to="/dashboard" className={menuClass}>
+        <NavLink
+          to="/dashboard"
+          className={menuClass}
+        >
           <FaTachometerAlt />
           Dashboard
         </NavLink>
 
-        <NavLink to="/practice" className={menuClass}>
+        <NavLink
+          to="/practice"
+          className={menuClass}
+        >
           <FaCode />
           DSA Practice
         </NavLink>
 
-        <NavLink to="/mock-interviews" className={menuClass}>
-  <FaRobot />
-  Mock Interviews
-</NavLink>
+        <NavLink
+          to="/mock-interviews"
+          className={menuClass}
+        >
+          <FaRobot />
+          Mock Interviews
+        </NavLink>
 
-        <NavLink to="/quiz" className={menuClass}>
+        <NavLink
+          to="/quiz"
+          className={menuClass}
+        >
           <FaClipboardList />
           Quizzes
         </NavLink>
 
-        <NavLink to="/roadmaps" className={menuClass}>
+        <NavLink
+          to="/roadmaps"
+          className={menuClass}
+        >
           <FaRoad />
           Roadmaps
         </NavLink>
 
-        <NavLink to="/resume" className={menuClass}>
+        <NavLink
+          to="/resume"
+          className={menuClass}
+        >
           <FaFileAlt />
           Resume Analyzer
         </NavLink>
 
-        <NavLink to="/progress" className={menuClass}>
+        <NavLink
+          to="/progress"
+          className={menuClass}
+        >
           <FaChartLine />
           Progress
         </NavLink>
 
-        <NavLink to="/profile" className={menuClass}>
+        <NavLink
+          to="/profile"
+          className={menuClass}
+        >
           <FaUser />
           Profile
         </NavLink>
@@ -85,12 +121,40 @@ function Sidebar() {
 
       <div className="p-4 border-t flex flex-col gap-2">
 
-        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">
+        <button
+          onClick={() =>
+            navigate("/settings")
+          }
+          className="
+          flex
+          items-center
+          gap-3
+          px-4
+          py-3
+          rounded-xl
+          text-gray-600
+          hover:bg-gray-100
+          transition
+          "
+        >
           <FaCog />
           Settings
         </button>
 
-        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50">
+        <button
+          onClick={handleLogout}
+          className="
+          flex
+          items-center
+          gap-3
+          px-4
+          py-3
+          rounded-xl
+          text-red-500
+          hover:bg-red-50
+          transition
+          "
+        >
           <FaSignOutAlt />
           Logout
         </button>
