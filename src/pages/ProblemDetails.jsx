@@ -44,14 +44,14 @@ int main() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "https://interview-ace-ai-sd8f.onrender.com",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  "https://interview-ace-ai-sd8f.onrender.com/api/auth/dsa",
+  {},
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       localStorage.setItem(
         "user",
