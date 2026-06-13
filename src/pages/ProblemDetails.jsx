@@ -44,7 +44,7 @@ int main() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "http://localhost:5000/api/auth/dsa",
+        "https://interview-ace-ai-sd8f.onrender.com",
         {},
         {
           headers: {

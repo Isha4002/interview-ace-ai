@@ -38,7 +38,7 @@ function Profile() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "http://localhost:5000/api/auth/profile",
+        "https://interview-ace-ai-sd8f.onrender.com",
         {
           name,
         },
