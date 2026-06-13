@@ -7,7 +7,12 @@ import {
 } from "react-icons/fa";
 
 function ResumeResult() {
-  const score = 85;
+  const resumeName =
+    localStorage.getItem("resumeName") ||
+    "resume.pdf";
+
+  const score =
+    Math.floor(Math.random() * 16) + 85;
 
   return (
     <div className="bg-[#F8F7FC] min-h-screen">
@@ -29,7 +34,7 @@ function ResumeResult() {
 
         <div className="grid md:grid-cols-2 gap-8">
 
-          {/* Score */}
+          {/* Score Card */}
 
           <div className="bg-white rounded-3xl shadow p-8">
 
@@ -47,6 +52,18 @@ function ResumeResult() {
                 ATS Compatibility Score
               </p>
 
+              <div className="mt-6 text-center">
+
+                <p className="text-gray-500">
+                  Uploaded Resume
+                </p>
+
+                <p className="font-semibold">
+                  {resumeName}
+                </p>
+
+              </div>
+
             </div>
 
           </div>
@@ -63,28 +80,88 @@ function ResumeResult() {
 
               <div className="flex items-center gap-3">
                 <FaCheckCircle className="text-green-500" />
-                <span>Strong MERN Stack Project Experience</span>
+                <span>
+                  Strong MERN Stack Project Experience
+                </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FaCheckCircle className="text-green-500" />
-                <span>GitHub Portfolio Available</span>
+                <span>
+                  GitHub Portfolio Available
+                </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FaCheckCircle className="text-green-500" />
-                <span>Technical Skills Well Listed</span>
+                <span>
+                  Technical Skills Well Listed
+                </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FaTimesCircle className="text-red-500" />
-                <span>Achievements Section Missing</span>
+                <span>
+                  Achievements Section Missing
+                </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FaTimesCircle className="text-red-500" />
-                <span>Resume Summary Can Be Improved</span>
+                <span>
+                  Resume Summary Can Be Improved
+                </span>
               </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* ATS Analysis */}
+
+        <div className="bg-white rounded-3xl shadow p-8 mt-8">
+
+          <h2 className="text-2xl font-bold mb-6">
+            ATS Analysis
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-4">
+
+            <div className="bg-green-50 p-4 rounded-xl text-center">
+
+              <h3 className="font-bold text-green-600">
+                Keywords
+              </h3>
+
+              <p className="text-2xl font-bold mt-2">
+                92%
+              </p>
+
+            </div>
+
+            <div className="bg-blue-50 p-4 rounded-xl text-center">
+
+              <h3 className="font-bold text-blue-600">
+                Formatting
+              </h3>
+
+              <p className="text-2xl font-bold mt-2">
+                88%
+              </p>
+
+            </div>
+
+            <div className="bg-orange-50 p-4 rounded-xl text-center">
+
+              <h3 className="font-bold text-orange-600">
+                Readability
+              </h3>
+
+              <p className="text-2xl font-bold mt-2">
+                90%
+              </p>
 
             </div>
 
@@ -102,39 +179,28 @@ function ResumeResult() {
 
           <div className="flex flex-wrap gap-3">
 
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              React
-            </span>
-
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              Node.js
-            </span>
-
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              Express.js
-            </span>
-
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              MongoDB
-            </span>
-
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              Java
-            </span>
-
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              Python
-            </span>
-
-            <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-              Git
-            </span>
+            {[
+              "React",
+              "Node.js",
+              "Express.js",
+              "MongoDB",
+              "Java",
+              "Python",
+              "Git",
+            ].map((skill) => (
+              <span
+                key={skill}
+                className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full"
+              >
+                {skill}
+              </span>
+            ))}
 
           </div>
 
         </div>
 
-        {/* Missing Skills */}
+        {/* Recommended Skills */}
 
         <div className="bg-white rounded-3xl shadow p-8 mt-8">
 
@@ -144,21 +210,19 @@ function ResumeResult() {
 
           <div className="flex flex-wrap gap-3">
 
-            <span className="px-4 py-2 bg-red-100 text-red-600 rounded-full">
-              System Design
-            </span>
-
-            <span className="px-4 py-2 bg-red-100 text-red-600 rounded-full">
-              Docker
-            </span>
-
-            <span className="px-4 py-2 bg-red-100 text-red-600 rounded-full">
-              CI/CD
-            </span>
-
-            <span className="px-4 py-2 bg-red-100 text-red-600 rounded-full">
-              Testing
-            </span>
+            {[
+              "System Design",
+              "Docker",
+              "CI/CD",
+              "Testing",
+            ].map((skill) => (
+              <span
+                key={skill}
+                className="px-4 py-2 bg-red-100 text-red-600 rounded-full"
+              >
+                {skill}
+              </span>
+            ))}
 
           </div>
 
@@ -206,7 +270,7 @@ function ResumeResult() {
 
         </div>
 
-        {/* Bottom Card */}
+        {/* Strength Level */}
 
         <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-3xl p-8 mt-8 shadow-lg">
 
@@ -221,9 +285,11 @@ function ResumeResult() {
               </h2>
 
               <p className="mt-2">
-                Your resume is above average and ready for most
-                internship applications. A few improvements can
-                push it beyond 90+ ATS score.
+                {score >= 95
+                  ? "Excellent resume. Ready for top internship and placement opportunities."
+                  : score >= 90
+                  ? "Strong resume with minor improvements needed."
+                  : "Good resume. Add more achievements and project impact to increase ATS score."}
               </p>
 
             </div>

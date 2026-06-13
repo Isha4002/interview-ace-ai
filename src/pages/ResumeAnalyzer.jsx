@@ -84,7 +84,7 @@ function ResumeAnalyzer() {
               </div>
             )}
 
-            <button
+            {/* <button
               onClick={handleAnalyze}
               className="
               mt-8
@@ -99,7 +99,34 @@ function ResumeAnalyzer() {
               "
             >
               Analyze Resume
-            </button>
+            </button> */}
+
+
+            <button
+  onClick={() => {
+    if (!file) {
+      alert("Please upload a resume");
+      return;
+    }
+
+    localStorage.setItem(
+      "resumeName",
+      file.name
+    );
+
+    navigate("/resume-result");
+  }}
+  className="
+  mt-6
+  bg-purple-600
+  text-white
+  px-6
+  py-3
+  rounded-xl
+  "
+>
+  Analyze Resume
+</button>
 
           </div>
 
