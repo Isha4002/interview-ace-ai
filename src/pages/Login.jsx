@@ -21,9 +21,9 @@ function Login() {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        "https://interview-ace-ai-sd8f.onrender.com",
-        formData
-      );
+  "https://interview-ace-ai-sd8f.onrender.com/api/auth/login",
+  formData
+)
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));

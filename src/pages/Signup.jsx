@@ -22,40 +22,57 @@ function Signup() {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        "https://interview-ace-ai-sd8f.onrender.com",
+        "https://interview-ace-ai-sd8f.onrender.com/api/auth/register",
         formData
       );
 
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem(
+        "token",
+        res.data.token
+      );
+
+      if (res.data.user) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify(res.data.user)
+        );
+      }
 
       alert("Account Created Successfully 🎉");
 
       navigate("/dashboard");
-    } catch (error) {
-  console.log("FULL ERROR:", error);
-  console.log("RESPONSE:", error.response);
-  console.log("DATA:", error.response?.data);
 
-  alert(
-    error.response?.data?.message ||
-    error.message
-  );
-}
+    } catch (error) {
+      console.log("FULL ERROR:", error);
+      console.log("RESPONSE:", error.response);
+      console.log("DATA:", error.response?.data);
+
+      alert(
+        error.response?.data?.message ||
+        "Signup Failed"
+      );
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#F8F7FC] flex items-center justify-center px-4">
+
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8">
-        
+
         {/* Logo */}
+
         <div className="flex items-center justify-center gap-2 mb-6">
+
           <FaRobot className="text-purple-600 text-2xl" />
+
           <h1 className="text-xl font-bold">
             InterviewAce AI
           </h1>
+
         </div>
 
         {/* Heading */}
+
         <h2 className="text-3xl font-bold text-center">
           Create Account
         </h2>
@@ -65,6 +82,7 @@ function Signup() {
         </p>
 
         {/* Google */}
+
         <button
           className="
           w-full
@@ -83,7 +101,8 @@ function Signup() {
           Sign up with Google
         </button>
 
-        {/* Github */}
+        {/* GitHub */}
+
         <button
           className="
           w-full
@@ -103,7 +122,9 @@ function Signup() {
         </button>
 
         {/* Divider */}
+
         <div className="flex items-center my-6">
+
           <div className="flex-1 border-t"></div>
 
           <span className="px-4 text-gray-400">
@@ -111,9 +132,11 @@ function Signup() {
           </span>
 
           <div className="flex-1 border-t"></div>
+
         </div>
 
         {/* Name */}
+
         <input
           type="text"
           name="name"
@@ -132,6 +155,7 @@ function Signup() {
         />
 
         {/* Email */}
+
         <input
           type="email"
           name="email"
@@ -150,6 +174,7 @@ function Signup() {
         />
 
         {/* Password */}
+
         <input
           type="password"
           name="password"
@@ -168,6 +193,7 @@ function Signup() {
         />
 
         {/* Button */}
+
         <button
           onClick={handleSubmit}
           className="
@@ -184,6 +210,7 @@ function Signup() {
         </button>
 
         <p className="text-center mt-6 text-gray-500">
+
           Already have an account?
 
           <Link
@@ -192,8 +219,11 @@ function Signup() {
           >
             Login
           </Link>
+
         </p>
+
       </div>
+
     </div>
   );
 }
