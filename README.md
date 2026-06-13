@@ -1,52 +1,73 @@
 # 🚀 InterviewAce AI
 
+> An AI-Powered Interview Preparation Platform built using the MERN Stack to help students prepare for coding interviews, mock interviews, quizzes, resume analysis, and structured learning roadmaps.
+
 <div align="center">
 
-### AI-Powered Interview Preparation Platform
-
-Prepare smarter with DSA Practice, Mock Interviews, Resume Analysis, Quizzes, and Personalized Learning Roadmaps.
-
-**Live Demo:** https://interview-ace-ai-eight.vercel.app
-
-**Backend API:** https://interview-ace-ai-sd8f.onrender.com
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react\&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Backend-339933?logo=node.js\&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-API-000000?logo=express\&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb\&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Authentication-000000?logo=jsonwebtokens\&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-UI-06B6D4?logo=tailwindcss\&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel\&logoColor=white)
+![Render](https://img.shields.io/badge/Render-Backend-46E3B7?logo=render\&logoColor=white)
 
 </div>
 
 ---
 
-## 📖 Overview
+# 🔗 Live Links
 
-InterviewAce AI is a full-stack interview preparation platform built to help students and aspiring software engineers prepare for technical interviews through a structured and interactive learning experience.
+### 🌐 Live Demo
 
-The platform combines coding practice, AI-assisted interview preparation, resume evaluation, quizzes, progress tracking, and personalized learning roadmaps into a single dashboard.
+https://interview-ace-ai-eight.vercel.app
 
-Instead of using multiple tools for interview preparation, users can access everything from one centralized platform.
+### ⚙️ Backend API
+
+https://interview-ace-ai-sd8f.onrender.com
+
+### 📂 GitHub Repository
+
+https://github.com/Isha4002/interview-ace-ai
 
 ---
 
-## ✨ Key Features
+# 📌 Overview
 
-### 🔐 Secure Authentication
+InterviewAce AI is a comprehensive full-stack interview preparation platform designed to help students and aspiring software engineers prepare effectively for technical interviews.
 
-* User Registration & Login
-* JWT-Based Authentication
+The platform combines coding practice, AI-assisted interview preparation, quizzes, learning roadmaps, resume analysis, progress tracking, and user analytics into a single centralized dashboard.
+
+Instead of switching between multiple platforms, users can manage their complete interview preparation journey from one application.
+
+---
+
+# ✨ Features
+
+## 🔐 Authentication System
+
+* User Registration
+* User Login
+* JWT Authentication
 * Protected Routes
-* Persistent Sessions
-* User Profile Management
+* Persistent User Sessions
+* Secure User Management
 
 ---
 
-### 💻 DSA Practice Platform
+## 💻 DSA Practice Module
 
-* Curated Coding Problems
-* Search & Filter Questions
-* Topic-Based Practice
-* Difficulty-Based Filtering
+* Curated Coding Questions
+* Topic-Based Learning
+* Difficulty Filtering
+* Search Functionality
 * Monaco Code Editor Integration
+* Multi-Language Support
 * Progress Tracking
-* Solved Problems Counter
+* Solved Questions Counter
 
-**Supported Languages**
+### Supported Languages
 
 * Java
 * Python
@@ -55,41 +76,43 @@ Instead of using multiple tools for interview preparation, users can access ever
 
 ---
 
-### 🎤 Mock Interview System
+## 🎤 Mock Interview System
 
-* Role-Specific Interview Preparation
 * Frontend Developer Interviews
 * Backend Developer Interviews
 * Full Stack Developer Interviews
-* Machine Learning Interviews
+* Data Science Interviews
 * Interactive Interview Sessions
-* Performance Tracking
+* Timer-Based Mock Interviews
+* Interview Completion Tracking
 
 ---
 
-### 📝 Quiz Module
+## 📝 Quiz Module
 
-* Technical MCQ Assessments
-* Instant Score Evaluation
-* Quiz Progress Tracking
+* Technical MCQs
+* Interactive Quiz Interface
+* Score Calculation
+* Progress Tracking
 * Dashboard Statistics Integration
 
 ---
 
-### 📄 Resume Analyzer
+## 📄 Resume Analyzer
 
 * Resume Upload Interface
-* ATS-Style Resume Evaluation
+* ATS Style Evaluation
 * Resume Scoring
-* Skill Extraction
-* Improvement Recommendations
-* Strength & Weakness Analysis
+* Skill Detection
+* Missing Skill Recommendations
+* Resume Strength Analysis
+* Improvement Suggestions
 
 ---
 
-### 🗺️ Learning Roadmaps
+## 🗺️ Learning Roadmaps
 
-Structured preparation paths for:
+Structured learning paths for:
 
 * Frontend Development
 * Backend Development
@@ -100,76 +123,84 @@ Structured preparation paths for:
 
 ---
 
-### 📊 Analytics Dashboard
+## 📊 Analytics Dashboard
 
-Track preparation progress through:
+Track preparation through:
 
 * DSA Problems Solved
 * Mock Interviews Completed
-* Quiz Performance
+* Quizzes Attempted
 * Daily Learning Streaks
-* Weekly Progress Graphs
+* Weekly Progress Graph
 * Activity Feed
+* Performance Overview
 
 ---
 
-### 👤 User Profile & Settings
+## 👤 User Profile
 
 * Profile Management
-* Account Information
 * Progress Overview
 * Learning Statistics
-* Personal Preferences
+* Account Information
 
 ---
 
-## 🏗️ System Architecture
+## ⚙️ Settings
+
+* Profile Updates
+* Account Preferences
+* User Management
+
+---
+
+# 🏗️ System Architecture
 
 ```text
-Frontend (React + Tailwind)
+React + Tailwind CSS
           │
           ▼
- REST API (Express.js)
+     Express API
           │
           ▼
- Authentication (JWT)
+ JWT Authentication
           │
           ▼
- MongoDB Atlas Database
+ MongoDB Atlas
           │
           ▼
- User Progress & Analytics
+ User Analytics & Progress
 ```
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-### Frontend
+## Frontend
 
 * React.js
 * React Router DOM
 * Tailwind CSS
 * Axios
+* Monaco Editor
 * Recharts
 * React Icons
-* Monaco Editor
 
-### Backend
+## Backend
 
 * Node.js
 * Express.js
 * JWT Authentication
 * bcryptjs
-* CORS
 * dotenv
+* CORS
 
-### Database
+## Database
 
 * MongoDB Atlas
-* Mongoose ODM
+* Mongoose
 
-### Deployment
+## Deployment
 
 * Vercel (Frontend)
 * Render (Backend)
@@ -177,7 +208,7 @@ Frontend (React + Tailwind)
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 InterviewAce-AI
@@ -193,8 +224,27 @@ InterviewAce-AI
 ├── src
 │   ├── assets
 │   ├── components
-│   ├── data
+│   │   ├── Sidebar.jsx
+│   │   └── ProtectedRoute.jsx
+│   │
 │   ├── pages
+│   │   ├── Dashboard.jsx
+│   │   ├── Login.jsx
+│   │   ├── Signup.jsx
+│   │   ├── Profile.jsx
+│   │   ├── Settings.jsx
+│   │   ├── Practice.jsx
+│   │   ├── ProblemDetails.jsx
+│   │   ├── MockInterviews.jsx
+│   │   ├── InterviewSession.jsx
+│   │   ├── Quiz.jsx
+│   │   ├── QuizAttempt.jsx
+│   │   ├── Roadmaps.jsx
+│   │   ├── RoadmapDetails.jsx
+│   │   ├── ResumeAnalyzer.jsx
+│   │   ├── ResumeResult.jsx
+│   │   └── Progress.jsx
+│   │
 │   ├── App.jsx
 │   └── main.jsx
 │
@@ -206,9 +256,9 @@ InterviewAce-AI
 
 ---
 
-## 🚀 Installation & Setup
+# 🚀 Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/Isha4002/interview-ace-ai.git
@@ -216,7 +266,9 @@ git clone https://github.com/Isha4002/interview-ace-ai.git
 cd interview-ace-ai
 ```
 
-### Frontend Setup
+---
+
+## Frontend Setup
 
 ```bash
 npm install
@@ -224,7 +276,9 @@ npm install
 npm run dev
 ```
 
-### Backend Setup
+---
+
+## Backend Setup
 
 ```bash
 cd backend
@@ -236,7 +290,7 @@ npm start
 
 ---
 
-## 🔑 Environment Variables
+# 🔑 Environment Variables
 
 Create a `.env` file inside the backend directory.
 
@@ -252,57 +306,53 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ---
 
-## 📈 Future Enhancements
+# 📸 Screenshots
 
-* AI-Powered Question Generation
-* Real-Time Code Execution Engine
-* Company-Specific Interview Tracks
-* AI Resume Builder
-* Video-Based Mock Interviews
-* Leaderboards & Rankings
-* Personalized Learning Recommendations
-* Interview Performance Analytics
+Add screenshots here after deployment.
+
+```md
+screenshots/
+├── landing-page.png
+├── dashboard.png
+├── dsa-practice.png
+├── mock-interview.png
+├── quiz.png
+├── resume-analyzer.png
+```
 
 ---
 
-## 🎯 Skills Demonstrated
+# 📈 Future Enhancements
 
-This project showcases practical experience in:
+* AI Generated Interview Questions
+* Real-Time Code Execution
+* Company Specific Interview Tracks
+* AI Resume Builder
+* Video Mock Interviews
+* Interview Performance Analytics
+* Leaderboards
+* Learning Recommendations
+* Coding Contest Platform
+
+---
+
+# 🎯 Learning Outcomes
+
+Through this project I gained practical experience in:
 
 * Full Stack MERN Development
 * REST API Design
 * Authentication & Authorization
-* MongoDB Database Design
-* Protected Routing
+* MongoDB Database Integration
 * Dashboard Development
+* Protected Routing
 * State Management
 * Responsive UI Design
-* Deployment & DevOps Basics
+* Deployment & Hosting
 * Git & GitHub Workflow
+* Project Architecture Design
 
 ---
-
-## 👩‍💻 Author
-
-### Isha Pal
-
-Computer Science Student | MERN Stack Developer | Machine Learning Enthusiast
-
-**GitHub:** https://github.com/Isha4002
-
-**Project Repository:** https://github.com/Isha4002/interview-ace-ai
-
----
-
-## ⭐ Support
-
-If you found this project useful, consider giving it a star on GitHub.
-
-It helps support future improvements and motivates continued development.
-
-⭐ Star the repository if you like the project!
-
-
 
 
 
