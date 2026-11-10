@@ -1,0 +1,20 @@
+
+name: DeployPilot CI/CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test deployment trigger
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Confirm workflow started
+        run: echo "DeployPilot successfully triggered this workflow!"
+
+      - name: Display commit information
+        run: echo "Commit SHA: $GITHUB_SHA"
