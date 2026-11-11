@@ -14,7 +14,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Confirm workflow started
-        run: echo "DeployPilot successfully triggered this workflow!"
+        run: |
+          echo "DeployPilot successfully triggered this workflow!"
 
       - name: Display commit information
-        run: echo "Commit SHA: $GITHUB_SHA"
+        run: |
+          echo "Commit SHA: $GITHUB_SHA"
