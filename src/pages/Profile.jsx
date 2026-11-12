@@ -1,7 +1,7 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import API from "../api/api";
 import Sidebar from "../components/Sidebar";
 
 import {
@@ -17,19 +17,16 @@ function Profile() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
+    JSON.parse(localStorage.getItem("user") || "null")
   );
 
   const [editing, setEditing] = useState(false);
 
-  const [name, setName] = useState(
-    user?.name || ""
-  );
+  const [name, setName] = useState(user?.name || "");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
     navigate("/login");
   };
 
@@ -37,11 +34,9 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.put(
-        "https://interview-ace-ai-sd8f.onrender.com",
-        {
-          name,
-        },
+      const res = await API.put(
+        "/auth/profile",
+        { name },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +52,6 @@ function Profile() {
       );
 
       alert("Profile Updated Successfully 🎉");
-
       setEditing(false);
 
     } catch (error) {
@@ -86,7 +80,6 @@ function Profile() {
             </div>
 
             <div>
-
               <h1 className="text-3xl font-bold">
                 {user?.name}
               </h1>
@@ -98,7 +91,6 @@ function Profile() {
               <span className="inline-block mt-3 px-4 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
                 {user?.role}
               </span>
-
             </div>
 
           </div>
@@ -164,59 +156,35 @@ function Profile() {
         <div className="grid md:grid-cols-4 gap-6 mt-8">
 
           <div className="bg-white rounded-2xl shadow p-6 text-center">
-
             <FaCode className="mx-auto text-purple-600 text-3xl mb-3" />
-
             <h2 className="text-3xl font-bold">
               {user?.dsaSolved || 0}
             </h2>
-
-            <p className="text-gray-500">
-              DSA Solved
-            </p>
-
+            <p className="text-gray-500">DSA Solved</p>
           </div>
 
           <div className="bg-white rounded-2xl shadow p-6 text-center">
-
             <FaRobot className="mx-auto text-blue-600 text-3xl mb-3" />
-
             <h2 className="text-3xl font-bold">
               {user?.mockInterviews || 0}
             </h2>
-
-            <p className="text-gray-500">
-              Mock Interviews
-            </p>
-
+            <p className="text-gray-500">Mock Interviews</p>
           </div>
 
           <div className="bg-white rounded-2xl shadow p-6 text-center">
-
             <FaClipboardList className="mx-auto text-orange-500 text-3xl mb-3" />
-
             <h2 className="text-3xl font-bold">
               {user?.quizzesTaken || 0}
             </h2>
-
-            <p className="text-gray-500">
-              Quizzes Taken
-            </p>
-
+            <p className="text-gray-500">Quizzes Taken</p>
           </div>
 
           <div className="bg-white rounded-2xl shadow p-6 text-center">
-
             <FaFire className="mx-auto text-red-500 text-3xl mb-3" />
-
             <h2 className="text-3xl font-bold">
               {user?.streak || 0}
             </h2>
-
-            <p className="text-gray-500">
-              Day Streak
-            </p>
-
+            <p className="text-gray-500">Day Streak</p>
           </div>
 
         </div>
@@ -238,9 +206,7 @@ function Profile() {
             <input
               type="text"
               value={name}
-              onChange={(e) =>
-                setName(e.target.value)
-              }
+              onChange={(e) => setName(e.target.value)}
               className="w-full border p-3 rounded-xl mb-4"
               placeholder="Enter Name"
             />

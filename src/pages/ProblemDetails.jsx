@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Editor from "@monaco-editor/react";
-import axios from "axios";
+import API from "../api/api";
 
 function ProblemDetails() {
   const navigate = useNavigate();
@@ -43,15 +43,15 @@ int main() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.put(
-  "https://interview-ace-ai-sd8f.onrender.com/api/auth/dsa",
-  {},
-  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-);
+      const res = await API.put(
+        "/auth/dsa",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       localStorage.setItem(
         "user",
@@ -97,7 +97,6 @@ int main() {
                 </span>
 
               </div>
-
             </div>
 
             <button
@@ -167,9 +166,7 @@ int main() {
               <option value="java">Java</option>
               <option value="python">Python</option>
               <option value="cpp">C++</option>
-              <option value="javascript">
-                JavaScript
-              </option>
+              <option value="javascript">JavaScript</option>
             </select>
 
           </div>
@@ -178,9 +175,7 @@ int main() {
             height="500px"
             language={language}
             value={code}
-            onChange={(value) =>
-              setCode(value || "")
-            }
+            onChange={(value) => setCode(value || "")}
             theme="vs-dark"
           />
 
@@ -188,9 +183,7 @@ int main() {
 
             <button
               onClick={() =>
-                setOutput(
-                  "Code Executed Successfully 🚀"
-                )
+                setOutput("Code Executed Successfully 🚀")
               }
               className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700"
             >
@@ -199,9 +192,7 @@ int main() {
 
             <button
               onClick={() =>
-                setOutput(
-                  "Solution Submitted Successfully ✅"
-                )
+                setOutput("Solution Submitted Successfully ✅")
               }
               className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700"
             >
@@ -230,18 +221,8 @@ int main() {
               Output
             </h3>
 
-            <div
-              className="
-              bg-black
-              text-green-400
-              rounded-xl
-              p-4
-              min-h-[120px]
-              font-mono
-              "
-            >
-              {output ||
-                "Run your code to see output..."}
+            <div className="bg-black text-green-400 rounded-xl p-4 min-h-[120px] font-mono">
+              {output || "Run your code to see output..."}
             </div>
 
           </div>
@@ -255,4 +236,3 @@ int main() {
 }
 
 export default ProblemDetails;
-

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub, FaRobot } from "react-icons/fa";
-import axios from "axios";
+import API from "../api/api";
 
 function Signup() {
   const navigate = useNavigate();
@@ -21,10 +21,7 @@ function Signup() {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(
-        "https://interview-ace-ai-sd8f.onrender.com/api/auth/register",
-        formData
-      );
+      const res = await API.post("/auth/register", formData);
 
       localStorage.setItem(
         "token",

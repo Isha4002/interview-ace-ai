@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRobot } from "react-icons/fa";
-import axios from "axios";
+import API from "../api/api";
 
 function Login() {
   const navigate = useNavigate();
@@ -20,10 +20,7 @@ function Login() {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(
-  "https://interview-ace-ai-sd8f.onrender.com/api/auth/login",
-  formData
-)
+      const res = await API.post("/auth/login", formData);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
