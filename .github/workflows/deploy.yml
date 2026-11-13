@@ -4,9 +4,19 @@ name: DeployPilot CI/CD
 on:
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ap-south-1
+  AWS_ACCOUNT_ID: "034362070467"
+  BACKEND_REPOSITORY: interviewace-backend
+  FRONTEND_REPOSITORY: interviewace-frontend
+
 jobs:
-  docker-build:
-    name: Build and Validate Docker Images
+  docker-build-and-push:
+    name: Build and Push Docker Images to AWS ECR
     runs-on: ubuntu-latest
 
     steps:
@@ -16,21 +26,38 @@ jobs:
       - name: Confirm workflow started
         run: echo "DeployPilot CI/CD pipeline started!"
 
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build backend Docker image
         run: |
           docker build \
-            -t interviewace-backend:latest \
+            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:latest \
+            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:$GITHUB_SHA \
             ./backend
+
+      - name: Push backend Docker image
+        run: |
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:latest
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:$GITHUB_SHA
 
       - name: Build frontend Docker image
         run: |
           docker build \
-            -t interviewace-frontend:latest \
+            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:latest \
+            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:$GITHUB_SHA \
             -f Dockerfile .
 
-      - name: Display commit information
+      - name: Push frontend Docker image
         run: |
-          echo "Commit SHA: $GITHUB_SHA"
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:latest
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:$GITHUB_SHA
 
       - name: Pipeline completed
-        run: echo "Both Docker images built successfully!"
+        run: echo "Both Docker images successfully pushed to AWS ECR!"
